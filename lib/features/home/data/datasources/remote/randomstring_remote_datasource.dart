@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:inventi/config/api_constants.dart';
 import 'package:inventi/features/home/data/models/randomstring_model.dart';
 import 'package:inventi/features/home/domain/entities/raandomstring_entity.dart';
 
@@ -19,8 +18,6 @@ class RandomstringRemoteDatasource {
               "Content-Type": "application/json",
             },
           ));
-
-      print(response); // This should work now
 
       if (response.statusCode == 200) {
         // Directly access the random string

@@ -240,6 +240,13 @@ class _LoginPageState extends State<LoginPage> {
   bool isVisible = false;
 
   @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -283,14 +290,17 @@ class _LoginPageState extends State<LoginPage> {
                       AppSizes.sizeBoxheight_20,
                       TextFormField(
                         decoration: InputDecoration(
-                          hintText: 'Enter Email Address',
+                          labelText: 'Enter Email Address',
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
-                          hintStyle: const TextStyle(
+                          labelStyle: const TextStyle(
                             color: AppColors.textStyleColor,
                             fontSize: AppSizes.fonstsizeMd,
+                            height: 1.5, // Adjust this for label positioning
                           ),
-                          contentPadding:
-                              const EdgeInsets.all(AppSizes.padding_15),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 20.0, // Adjust for height (taller)
+                            horizontal: 12.0,
+                          ),
                           border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.circular(AppSizes.borderradius),
@@ -312,14 +322,16 @@ class _LoginPageState extends State<LoginPage> {
                       TextFormField(
                         obscureText: !isVisible,
                         decoration: InputDecoration(
-                          hintText: 'Enter Password',
+                          labelText: 'Enter Password',
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
-                          hintStyle: const TextStyle(
+                          labelStyle: const TextStyle(
                             color: AppColors.textStyleColor,
                             fontSize: AppSizes.fonstsizeMd,
                           ),
-                          contentPadding:
-                              const EdgeInsets.all(AppSizes.padding_15),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 20, // Adjust this for desired height
+                            horizontal: 20,
+                          ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                           ),

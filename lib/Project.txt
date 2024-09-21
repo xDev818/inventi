@@ -1,0 +1,9 @@
+/// Assignemt for IT Flutter Developer
+/// Date : Sept 21, 2024
+/// Source : Figma Design
+/// Path : https://www.figma.com/design/010fN9BU4nAAluDyoP3Mm0/Exam?node-id=0-1&node-type=canvas&
+///        t=hxazRmbpnqtk9Ws6-0
+
+
+
+                      print("Error occurred: ${state.message}");

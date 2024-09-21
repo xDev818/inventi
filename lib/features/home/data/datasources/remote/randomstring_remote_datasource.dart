@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:inventi/config/api_constants.dart';
 import 'package:inventi/features/home/data/models/randomstring_model.dart';
 import 'package:inventi/features/home/domain/entities/raandomstring_entity.dart';
 
@@ -8,11 +9,10 @@ class RandomstringRemoteDatasource {
   RandomstringRemoteDatasource({required this.dio});
 
   Future<List<RandomStringEntity>> getRandomString() async {
-    //  const String apiUrl = AppApi.apiURL;
+    const String apiUrl = AppApi.apiURL;
 
     try {
-      final response = await dio.get(
-          'https://o7q6ka26qs232rmbtpbrxghy6u0vyrup.lambda-url.ap-southeast-1.on.aws/',
+      final response = await dio.get(apiUrl,
           options: Options(
             headers: {
               "Content-Type": "application/json",

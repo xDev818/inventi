@@ -155,8 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                                     onTap: () {
                                       _emailController.clear();
                                       setState(() {
-                                        emailError =
-                                            null; // Clear the error on clear
+                                        emailError = null; // Clear the error
                                         emailLabelText =
                                             'Email Address'; // Update label text
                                       });
@@ -168,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                                 onChanged: (value) {
                                   // Clear the error on text change
                                   setState(() {
-                                    emailError = null;
+                                    emailError = null; // clear the error
                                     emailLabelText =
                                         'Email Address'; // Update label text
                                   });

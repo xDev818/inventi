@@ -24,10 +24,13 @@ class Validator {
   }
 
   static String? validatePassword({required String password}) {
+    RegExp regEx = RegExp(
+        r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
+
     if (password.isEmpty) {
       return 'Password field is required';
-    } else if (password.length < 8) {
-      return 'Password must have 8 Characters';
+    } else if (password.length < 8 || (!regEx.hasMatch(password))) {
+      return 'Min. of 8 in length including special character and number';
     }
     return null;
   }

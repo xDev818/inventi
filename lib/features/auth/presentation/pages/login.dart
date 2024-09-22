@@ -1,6 +1,12 @@
 // Date : Sept 21, 2024
 // Authro : RLP
 // Purpose : Login Page for user
+
+// Date : Sept 22, 2024 1:18PM
+// Author : RLP
+// Purpose : Fix the TextFormField ( Email and Password )
+//            Updated LabelText that wil not overlap on the border both focus and Loss focus
+
 import 'package:flutter/material.dart';
 import 'package:inventi/config/app_colors.dart';
 import 'package:inventi/config/app_images.dart';

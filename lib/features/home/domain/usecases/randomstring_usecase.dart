@@ -1,3 +1,10 @@
+// Date : Sept 21, 2024
+// Author : RLP
+// Purpose : Use cases provide a clear interface for the actions that can be performed within the
+//          application. They typically expose methods that correspond to specific business
+//          actions (e.g., LoginUser, Fetch Random String).
+//
+
 import 'package:dartz/dartz.dart';
 import 'package:inventi/core/errors/failures.dart';
 import 'package:inventi/core/usecases/usecases.dart';

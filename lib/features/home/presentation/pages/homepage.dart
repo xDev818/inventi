@@ -1,3 +1,7 @@
+// Date : Sept 21, 2024
+// Author : RLP
+// Purpose : Create a Homepage and their functionality based on the Figma Design
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inventi/config/app_colors.dart';

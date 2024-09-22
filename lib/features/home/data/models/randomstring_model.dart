@@ -1,3 +1,7 @@
+// Date : Sept 21, 2024
+// Author : RLP
+// Purpose : Define the Properties of a model
+
 import 'package:inventi/features/home/domain/entities/raandomstring_entity.dart';
 
 class RandomStringModel extends RandomStringEntity {

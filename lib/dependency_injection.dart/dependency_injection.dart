@@ -1,3 +1,14 @@
+// Date : Sept 21, 2024
+// Author : RLP
+// Purpose : DI separates the creation of an object from its usage. This means that components can
+//          depend on abstractions (like interfaces) rather than concrete implementations, leading
+//          to more flexible and reusable code.
+
+//          It helps manage the dependencies of classes by providing instances of those
+//          dependencies when needed, rather than having classes create their own dependencies.
+//          This makes it easier to change implementations or configurations without altering the
+//          dependent classes.
+
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:inventi/config/api_constants.dart';

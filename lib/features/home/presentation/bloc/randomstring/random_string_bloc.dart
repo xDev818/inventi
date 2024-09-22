@@ -1,3 +1,9 @@
+// Date : Sept 21, 2024
+// Author : RLP
+// Purpose : The BLoC is responsible for managing the application's business logic and state. It //
+//          acts as an intermediary between the UI and the data layer (repositories, services,
+//          etc.).
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inventi/features/home/domain/usecases/randomstring_usecase.dart';
 import 'package:inventi/features/home/presentation/bloc/randomstring/random_string_event.dart';

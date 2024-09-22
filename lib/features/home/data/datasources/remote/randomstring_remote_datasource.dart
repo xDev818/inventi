@@ -1,3 +1,14 @@
+// Date : Sept 21, 2024
+// Author : RLP
+// Purpose : Connect to API and receive response
+
+// Date : Sept 22, 2024
+// Author : RLP
+// Purpose : During the Test in browser there is a Dio error response regarding CORS Policy on
+//          chrome browser.
+//          When it run on android mobile device there is no issue, the response is OK. Only in
+//          chrome browser testing.
+
 import 'package:dio/dio.dart';
 import 'package:inventi/config/api_constants.dart';
 import 'package:inventi/features/home/data/models/randomstring_model.dart';

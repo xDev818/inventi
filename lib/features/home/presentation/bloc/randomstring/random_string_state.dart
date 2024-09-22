@@ -1,3 +1,12 @@
+// Date : Sept 21, 2024
+// Author : RLP
+// Purpose : States represent the different conditions or views of the application at any given
+//            time. The BLoC emits new states based on the processing of events.
+//            States can reflect loading conditions, success or failure outcomes, or specific data
+//            that the UI needs to display.
+//
+//            extends a base class, providing a clear structure for different application states.
+
 import 'package:equatable/equatable.dart';
 import 'package:inventi/features/home/domain/entities/raandomstring_entity.dart';
 

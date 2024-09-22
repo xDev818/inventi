@@ -36,6 +36,10 @@ class _LoginPageState extends State<LoginPage> {
   bool isVisible = false;
 
   late Future<void> loadImage;
+  String? emailError;
+  String? passwordError;
+  String emailLabelText = 'Email Address'; // Variable for label text
+  String passwordLabelText = 'Enter Password'; // Variable for label text
 
   @override
   void didChangeDependencies() {
@@ -50,6 +54,25 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+  }
+
+  void validateEmail() {
+    String? validationResult =
+        Validator.validateEmail(email: _emailController.text);
+    setState(() {
+      emailError = validationResult; // Update the error state
+      emailLabelText = validationResult ?? 'Email Address'; // Update label text
+    });
+  }
+
+  void validatePassword() {
+    String? validationResult =
+        Validator.validatePassword(password: _passwordController.text);
+    setState(() {
+      passwordError = validationResult; // Update the error state
+      passwordLabelText =
+          validationResult ?? 'Enter Password'; // Update label text
+    });
   }
 
   @override
@@ -100,77 +123,68 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               AppSizes.sizeBoxheight_20,
                               TextFormField(
-                                  decoration: InputDecoration(
-                                    labelText: 'Enter Email Address',
-                                    floatingLabelBehavior: FloatingLabelBehavior
-                                        .auto, // Label floats when focused
-                                    labelStyle: const TextStyle(
-                                      color: AppColors.textStyleColor,
-                                      fontSize: AppSizes.fonstsizeMd,
-                                    ),
-                                    contentPadding: const EdgeInsets.only(
-                                      top:
-                                          20.0, // Adjust top padding for space between label and text
-                                      bottom:
-                                          10.0, // Space between text and error message
-                                      left: 12.0,
-                                      right: 12.0,
-                                    ),
-                                    // Border styles for focused and enabled states
-                                    focusedBorder: const UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: AppColors.primaryWhite,
-                                          width: 2.0),
-                                    ),
-                                    enabledBorder: const UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: AppColors.secondaryGrey,
-                                          width: 1.5),
-                                    ),
-                                    // Handle error state
-                                    errorBorder: const UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: AppColors.primaryError,
-                                          width: 1.5),
-                                    ),
-                                    focusedErrorBorder:
-                                        const UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: AppColors.primaryError,
-                                          width: 2.0),
-                                    ),
-                                    filled: true,
-                                    fillColor: AppColors.primaryWhite,
-                                    suffixIcon: GestureDetector(
-                                      onTap: () {
-                                        _emailController.clear();
-                                      },
-                                      child: const Icon(Icons.close),
-                                    ),
-                                    errorStyle: const TextStyle(
-                                      color: AppColors
-                                          .primaryError, // Customize error message color
-                                      fontSize:
-                                          12.0, // Customize error message font size
-                                    ),
+                                decoration: InputDecoration(
+                                  labelText: emailLabelText,
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.auto,
+                                  labelStyle: TextStyle(
+                                    color: emailError == null
+                                        ? AppColors.textStyleColor
+                                        : AppColors.primaryError,
+                                    fontSize: AppSizes.fonstsizeMd,
                                   ),
-                                  controller: _emailController,
-                                  validator: (value) =>
-                                      // // Your validation logic here, e.g.:
-                                      // if (value == null || value.isEmpty) {
-                                      //   return 'Please enter your email address'; // Error message
-                                      // }
-                                      // return null; // No error
-                                      Validator.validateEmail(email: value!)),
+                                  contentPadding: const EdgeInsets.only(
+                                    top: 20.0,
+                                    bottom: 10.0,
+                                    left: 12.0,
+                                    right: 12.0,
+                                  ),
+                                  focusedBorder: const UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.primaryWhite,
+                                        width: 2.0),
+                                  ),
+                                  enabledBorder: const UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.secondaryGrey,
+                                        width: 1.5),
+                                  ),
+                                  filled: true,
+                                  fillColor: AppColors.primaryWhite,
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      _emailController.clear();
+                                      setState(() {
+                                        emailError =
+                                            null; // Clear the error on clear
+                                        emailLabelText =
+                                            'Email Address'; // Update label text
+                                      });
+                                    },
+                                    child: const Icon(Icons.close),
+                                  ),
+                                ),
+                                controller: _emailController,
+                                onChanged: (value) {
+                                  // Clear the error on text change
+                                  setState(() {
+                                    emailError = null;
+                                    emailLabelText =
+                                        'Email Address'; // Update label text
+                                  });
+                                },
+                              ),
                               AppSizes.sizeBoxheight_20,
                               TextFormField(
                                 obscureText: !isVisible,
                                 decoration: InputDecoration(
-                                  labelText: 'Enter Password',
+                                  labelText: passwordLabelText,
                                   floatingLabelBehavior: FloatingLabelBehavior
                                       .auto, // Label floats when focused
-                                  labelStyle: const TextStyle(
-                                    color: AppColors.textStyleColor,
+                                  labelStyle: TextStyle(
+                                    color: passwordError == null
+                                        ? AppColors.textStyleColor
+                                        : AppColors.primaryError,
                                     fontSize: AppSizes.fonstsizeMd,
                                   ),
                                   contentPadding: const EdgeInsets.only(
@@ -220,9 +234,12 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                                 controller: _passwordController,
-                                validator: (value) =>
-                                    Validator.validatePassword(
-                                        password: value!),
+                                onChanged: (value) {
+                                  // Clear the error on text change
+                                  setState(() {
+                                    passwordError = null;
+                                  });
+                                },
                               ),
                               AppSizes.sizeBoxheight_20,
                               const Row(
@@ -241,7 +258,11 @@ class _LoginPageState extends State<LoginPage> {
                               AppSizes.sizeBoxheight_30,
                               ElevatedButton(
                                 onPressed: () {
-                                  if (_formkey.currentState!.validate()) {
+                                  validateEmail(); // Validate email on button press
+                                  validatePassword(); // Validate password on button press
+                                  if (_formkey.currentState!.validate() &&
+                                      emailError == null &&
+                                      passwordError == null) {
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
                                         builder: (context) => const HomePage(),
